@@ -15,6 +15,6 @@ arm-unknown-linux-gnueabihf-g++ Cgpio.cpp ci2c.cpp Cping.cpp rgb_lcd.cpp main.cp
 # Utilisation avec websocketd
 ./websocketd --port=8080 --staticdir=. ./iot
 
-Dans un navigateur : http://<ip_raspberry>:8080
+Dans un navigateur : http://ip_raspberry:8080
 ![Websocket](websocketd2.png)
 
