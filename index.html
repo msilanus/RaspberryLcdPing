@@ -14,9 +14,35 @@
     document.getElementById('mesure').innerHTML = temp[1] ;
   };
   
+  function get_appropriate_ws_url()
+  {
+	var pcol;
+	var u = document.URL;
+
+	/*
+	 * We open the websocket encrypted if this page came on an
+	 * https:// url itself, otherwise unencrypted
+	 */
+
+	if (u.substring(0, 5) == "https") {
+		pcol = "wss://";
+		u = u.substr(8);
+	} else {
+		pcol = "ws://";
+		if (u.substring(0, 4) == "http")
+			u = u.substr(7);
+	}
+
+	u = u.split('/');
+
+	/* + "/xxx" bit is for IE10 workaround */
+
+	return pcol + u[0] + "/xxx";
+  }
+  
 
   // setup websocket with callbacks
-  var ws = new WebSocket('ws://192.168.1.12:8080/');
+  var ws = new WebSocket(get_appropriate_ws_url());
   ws.onopen = function() {
     log('CONNECT');
   };
@@ -25,7 +51,7 @@
   };
   ws.onmessage = function(event) {
     msg = event.data;
-    //log(msg);
+    log(msg);
     mesure(msg);
   };
 
@@ -60,10 +86,8 @@ div {
 <p>
 <p>
 <p>
-
 <h2>&nbsp;&nbsp Historique :</h2>
 <div id='log'></div>
-
 </body>
 </html>
 
