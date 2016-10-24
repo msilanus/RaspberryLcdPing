@@ -17,9 +17,6 @@ mutex m_mutex;
 condition_variable m_condVar;
 bool done;
 
-time_t now;
-tm *nowinfo; 
-
 int dist;
 
 
@@ -64,6 +61,9 @@ void thMesure()
 
 void thAffiche()
 {
+	time_t now;
+	tm *nowinfo; 	
+
 	string log;	
 	rgb_lcd *myLcd;
 	myLcd = new rgb_lcd();
