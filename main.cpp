@@ -40,7 +40,7 @@ bool isDone()
 void thMesure()
 {  	
 	Cping *ping;
-	ping = new Cping(21);
+	ping = new Cping(24);
 	
 	while(1)
 	{
